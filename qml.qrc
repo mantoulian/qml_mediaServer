@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>SignalSourceCtrl.qml</file>
+        <file>src/u0.png</file>
+        <file>src/u2.png</file>
+        <file>src/u4.png</file>
+        <file>src/winTitle.png</file>
+        <file>src/close.png</file>
+        <file>src/minimize.png</file>
+        <file>SigCtrlDialog.qml</file>
+        <file>RegisterPage.qml</file>
+        <file>BaseComponent/MyButton.qml</file>
+        <file>BaseComponent/MyShowBase.qml</file>
+        <file>WindowTitle.qml</file>
+        <file>SignalListView.qml</file>
+        <file>BaseComponent/MyTextField.qml</file>
+        <file>RemoveSignalCtlDlg.qml</file>
+        <file>SignalInfo.qml</file>
+        <file>SignalConnectInfo.qml</file>
+        <file>BaseComponent/MyDialog.qml</file>
+        <file>BaseComponent/ConfigQml.js</file>
+    </qresource>
+</RCC>
