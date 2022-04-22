@@ -14,21 +14,12 @@ public:
     Q_INVOKABLE QString GetMachineCode();
     Q_INVOKABLE bool WriteMachineCodeToFile(QString fileName);
 
-    //Q_INVOKABLE void SetMachineCode(QString code);
-    //Q_INVOKABLE void SetfileName(QString fileName);
-    //Q_INVOKABLE QString GetfileName();
-
-
 
 
 
 signals:
 
 private:
-    //QFile *m_file = NULL;
-    //QString m_code;
-    //QString m_fileName;
-
 
 
 };

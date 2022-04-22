@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.3
-import QtQml 2.12
-import QtQuick.Controls 2.12
+import QtQml 2.5
+import QtQuick.Controls 2.5
 import Com.ItSync.MediaServer 1.0
 import "BaseComponent"
 
@@ -27,12 +27,15 @@ Window {
     Connections{
         target: logTiele
 
-        function onCloseWindow(){
+        onCloseWindow: {
             root.close()
         }
-        function onMinimized(){
+
+        onMinimized: {
             root.showMinimized()
         }
+
+
     }
 
     //视频流列表
@@ -55,7 +58,6 @@ Window {
         sigName:sigList.sigName
         sigUrl:sigList.sigUrl
 
-
         anchors.top: logTiele.bottom
         anchors.left: sigList.right
     }
@@ -65,6 +67,7 @@ Window {
         id:sigConnectInfo
         width:parent.width/2
         height:sigList.height/2
+        dataMode: sigList.signalSourceObj
 
         anchors.top: sigInfo.bottom
         anchors.left: sigList.right

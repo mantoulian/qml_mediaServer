@@ -51,6 +51,9 @@ int main(int argc, char *argv[])
          QCoreApplication::installTranslator(&translator);
     }
 
+    //filedialog error
+    QCoreApplication::setOrganizationName("Some organization");
+
     qmlRegisterType<SignalSource>("Com.ItSync.MediaServer", 1, 0, "SignalSource");
     qmlRegisterType<SignalList>("Com.ItSync.MediaServer", 1, 0, "SignalList");
     qmlRegisterType<ClientInfo>("Com.ItSync.MediaServer", 1, 0, "ClientInfo");

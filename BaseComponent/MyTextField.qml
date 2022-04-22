@@ -1,4 +1,4 @@
-import QtQuick 2.5
+import QtQuick 2.12
 import QtQuick.Controls 2.5
 
 Item {
@@ -11,8 +11,8 @@ Item {
     property alias textName: name
     property alias textFont: name.font.family
     property alias textFontSize: name.font.pixelSize
-    property alias textFontBold: name.font.bold
     property alias textFontColor: name.color
+    property alias textFontBold: name.font.bold
 
 
     property alias textField: textField

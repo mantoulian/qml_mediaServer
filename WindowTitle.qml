@@ -4,10 +4,11 @@ import QtQuick.Controls 2.12
 
 
 //主窗口标题
-Item {
+Rectangle {
     id: root
     width:800
     height:200
+    color: "#1b1b1b"
 
     signal closeWindow()
     signal minimized()
@@ -24,7 +25,7 @@ Item {
             Connections{
                 target: regPageLoader.item
 
-                function onCloseDialog(){
+                onCloseDialog: {
                     regPageLoader.source = ""
                 }
             }
@@ -42,60 +43,51 @@ Item {
         }
     }
 
-    //显示内容
-    Rectangle{
-        id:backgroundRec
-        width: parent.width
-        height: parent.height
-        color: "#1b1b1b"
+    //log image
+    Image{
+        id:logImage
+        source: "src/winTitle.png"
 
-        //anchors.fill: parent
+        fillMode:Image.Stretch
 
-        //log image
-        Image{
-            id:logImage
-            source: "src/winTitle.png"
+        MouseArea{
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-            fillMode:Image.Stretch
-
-            MouseArea{
-                acceptedButtons: Qt.LeftButton | Qt.RightButton
-
-                anchors.fill: parent
-
-                onClicked: {
-                    if(mouse.button == Qt.RightButton)
-                    {
-                        logMenu.popup()
-                    }
-                }
-
-            }
-
-        }
-
-        Button{
-            id: closeWin
-            width: 30
-            height: 20
-            icon.source: "src/close.png"
-            icon.color: "White"
-            display: AbstractButton.IconOnly
-            background: Rectangle {
-                color: "Transparent"
-            }
-
-            anchors.right: parent.right
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.rightMargin: 10
+            anchors.fill: parent
 
             onClicked: {
-                root.closeWindow()
+                if(mouse.button == Qt.RightButton)
+                {
+                    logMenu.popup()
+                }
             }
 
         }
 
-        Button{
+    }
+
+    Button{
+        id: closeWin
+        width: 30
+        height: 20
+        icon.source: "src/close.png"
+        icon.color: "White"
+        display: AbstractButton.IconOnly
+        background: Rectangle {
+            color: "Transparent"
+        }
+
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.rightMargin: 10
+
+        onClicked: {
+            root.closeWindow()
+        }
+
+    }
+
+    Button{
             id: minimize
             width: 30
             height: 20
@@ -116,6 +108,14 @@ Item {
 
         }
 
-    }
-
 }
+
+
+
+//显示内容
+//Rectangle{
+//    id:backgroundRec
+//    width: parent.width
+//    height: parent.height
+//    color: "#1b1b1b"
+//}

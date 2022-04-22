@@ -9,6 +9,9 @@ MyDialog{
     width: 800
     height: 600
 
+    //property alias titleColor: titleBackground.color
+    property double titlePos: 0.15
+    property alias  titleText: titleTxt
     accept_Btn.contentText: "激活"
     reject_Btn.contentText: "取消"
 
@@ -18,14 +21,127 @@ MyDialog{
         anchors.fill: parent
     }
 
+    //save file dialog
+   contentData:[
+    Dialog_1_3.FileDialog {
+        id: saveFileDialog
+        title: "Please choose a file"
+        nameFilters : ["(*.txt)"]
+        selectExisting : false
+        selectMultiple : false
+
+        onAccepted: {
+            var filename = saveFileDialog.fileUrl.toString()
+            var filename_2 = filename.substring(6)
+            var ret = MyQmlFile.WriteMachineCodeToFile(filename_2)
+            console.log("ret:", ret, "filename_2:", filename_2)
+            close()
+        }
+
+        onRejected: {
+            close()
+        }
+
+    },
+
+    Dialog_1_3.FileDialog {
+       id: readFileDialog
+       title: "Please choose a file"
+       folder: shortcuts.home
+       nameFilters : ["(*.srd)"]
+       selectMultiple : false
+
+       onAccepted: {
+           var fileName = readFileDialog.fileUrl.toString()
+           var index = fileName.lastIndexOf('/');
+           var fileName_2 = fileName.substring(index + 1)
+           console.log("f: ",fileName, "f_2: ", fileName_2, "index:", index)
+
+           registerFileField.textFieldTxt = fileName_2
+           close()
+       }
+       onRejected: {
+           close()
+       }
+   }
+
+]
+
+    //title
+    Rectangle{
+        id:titleBackground
+        width: parent.width
+        height: parent.height * parent.titlePos
+        color:"blue"
+
+        Text {
+            id: titleTxt
+            text: qsTr("注册应用软件")
+            font.family: "MicrosoftYaHei"
+            font.pixelSize:24
+            color: "#ffffff"
+        }
+    }
+
     MyTextField{
-        id: txtField
+        id: registerCodeField
         width: parent.width
         height: 50
-        textName.text:"测试文本输入"
-        textField.text:"aaaaa"
+        textName.text:"zhuceshibiema"
+        textFont: "MicrosoftYaHei"
+        textFontSize: 20
+        textFontColor: "#ffffff"
 
-        anchors.centerIn: parent
+        Component.onCompleted: {
+           textField.text = MyQmlFile.GetMachineCode()
+        }
+
+        anchors.top:titleBackground.bottom
+        anchors.topMargin: 50
+    }
+
+    MyButton{
+        id:saveCodeBtn
+        width: 80
+        height: 50
+        textItem.text: "save code"
+
+        anchors.right: registerCodeField.right
+        anchors.top: registerCodeField.bottom
+        anchors.topMargin: 20
+
+        onClicked: {
+            saveFileDialog.open()
+        }
+    }
+
+    MyTextField{
+        id: registerFileField
+        width: parent.width
+        height: 50
+        textName.text:"zhucewenjianming"
+        textFont: "MicrosoftYaHei"
+        textFontSize: 20
+        textFontColor: "#ffffff"
+
+
+        anchors.top:saveCodeBtn.bottom
+        anchors.topMargin: 50
+    }
+
+    MyButton{
+        id:chooseFile
+        width: 80
+        height: 50
+        textItem.text: "choose file"
+
+        anchors.right: registerFileField.right
+        anchors.top: registerFileField.bottom
+        anchors.topMargin: 20
+
+        onClicked: {
+            readFileDialog.open()
+        }
     }
 
 }

@@ -30,37 +30,37 @@ QString MyQmlFile::GetMachineCode()
 {
      QString qsCode;
 
-//    CAppInfo *pAppInfo = CAppInfo::GetInstance();
-//    if(nullptr == pAppInfo)
-//        return qsCode;
+    CAppInfo *pAppInfo = CAppInfo::GetInstance();
+    if(nullptr == pAppInfo)
+        return qsCode;
 
-//    CString strCode = pAppInfo->GetMachineCode();
-//    const char* p = (const char*)strCode;
+    CString strCode = pAppInfo->GetMachineCode();
+    const char* p = (const char*)strCode;
 
-//    //qDebug()<<"machine code :"<<p;
+    //qDebug()<<"machine code :"<<p;
 
-//    qsCode = QLatin1String(p);
+    qsCode = QLatin1String(p);
 
-//    //QString codeUTF8 = GBK2UTF8(qsCode);
-//    //qDebug()<<"machine_code_UTF8 :"<<codeUTF8;
+    //QString codeUTF8 = GBK2UTF8(qsCode);
+    //qDebug()<<"machine_code_UTF8 :"<<codeUTF8;
 
     return qsCode;
 }
 
 bool MyQmlFile::WriteMachineCodeToFile(QString fileName)
 {
-//    CAppInfo *pAppInfo = CAppInfo::GetInstance();
-//    if(NULL == pAppInfo)
-//        return false;
+    CAppInfo *pAppInfo = CAppInfo::GetInstance();
+    if(NULL == pAppInfo)
+        return false;
 
-//    QByteArray ba = fileName.toLatin1();
-//    const char *p = ba;
-//    if(NULL == p)
-//        return false;
-//    qDebug()<<"p:"<<p;
-//    CString strFileName = p;
+    QByteArray ba = fileName.toLatin1();
+    const char *p = ba;
+    if(NULL == p)
+        return false;
+    qDebug()<<"p:"<<p;
+    CString strFileName = p;
 
-//    return pAppInfo->WriteMachineCodeToFile(strFileName);
+    return pAppInfo->WriteMachineCodeToFile(strFileName);
     return false;
 }
 

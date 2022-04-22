@@ -9,6 +9,7 @@ UI_DIR=./UI
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        MediaServerApplication.cpp \
         clientinfo.cpp \
         clientinfolist.cpp \
         main.cpp \
@@ -37,6 +38,7 @@ unix:INCLUDEPATH += $$PWD/../ItSyncLib/include
 unix:DEPENDPATH += $$PWD/../ItSyncLib/include
 
 HEADERS += \
+    MediaServerApplication.h \
     StdAfx.h \
     clientinfo.h \
     clientinfolist.h \

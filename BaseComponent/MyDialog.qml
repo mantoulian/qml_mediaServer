@@ -1,4 +1,4 @@
-import QtQuick 2.5
+import QtQuick 2.12
 import QtQuick.Controls 2.5
 
 
@@ -8,21 +8,24 @@ Dialog {
     height: 600
     padding: 0
 
-    default property alias content: root.contentChildren
+    default property alias contentChild: root.contentChildren
     property alias accept_Btn: acceptBtn
     property alias reject_Btn: rejectBtn
     property bool autoOpen: true
 
     signal closeDialog()
 
-    //关闭对话框时,发送信号修改loader源
-    onClosed: {
-        closeDialog()
-    }
+//关闭对话框时,发送信号修改loader源(bug:写在这里会导致onAccepted不触发?)
+//    onClosed: {
+//        console.log("mydialog onClosed action")
+//        //closeDialog()
+//    }
 
     Component.onCompleted: {
         if(autoOpen)
+        {
             open()
+        }
     }
 
 
@@ -38,7 +41,8 @@ Dialog {
         anchors.rightMargin: 10
 
         onClicked: {
-            root.accept();
+            root.accept()
+            closeDialog()
         }
     }
 
@@ -55,6 +59,7 @@ Dialog {
 
         onClicked: {
             root.reject()
+            closeDialog()
         }
     }
 

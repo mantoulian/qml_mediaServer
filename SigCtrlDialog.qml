@@ -9,11 +9,18 @@ MyDialog{
     id: root
     width: 800
     height: 400
-
-
     //模态
     modal: true
     closePolicy: Popup.CloseOnEscape
+
+    property double cusPadding : 40
+    property int itemIndex: -1
+    property alias name: tbSignalName.textFieldTxt
+    property alias url: tbSignalUrl.textFieldTxt
+    property alias hasAudioUrl: chkHasAudioUrl.checked
+    property alias audioUrl: txtAudioUrl.text
+    property alias muteAudio: chkMuteAudio.checked
+
 
     //背景
     background:Rectangle{
@@ -22,22 +29,10 @@ MyDialog{
         color:"#1e1e1e"
     }
 
-    property int cusPadding : 40
-    property int itemIndex: -1
-    //property alias index: sigCtrl.itemIndex
-    property alias name: tbSignalName.textFieldTxt
-    property alias url: tbSignalUrl.textFieldTxt
-    property alias hasAudioUrl: chkHasAudioUrl.checked
-    property alias audioUrl: txtAudioUrl.text
-    property alias muteAudio: chkMuteAudio.checked
-
-
-
     onAccepted:{
-
-        console.log("aaa")
-        var itemName = txtSignalName.text
-        var itemUrl = txtSignalUrl.text
+        //console.log("aaa")
+        var itemName = tbSignalName.textFieldTxt
+        var itemUrl = tbSignalUrl.textFieldTxt
         var itemHasAudioUrl = chkHasAudioUrl.checked
         var itemAudioUrl = txtAudioUrl.text
         var itemMuteAudio = chkMuteAudio.checked
@@ -61,7 +56,6 @@ MyDialog{
         //console.log("itemName: ", itemName, "itemUrl: ", itemUrl);
 
     }
-
 
 
     //标题矩形
@@ -111,8 +105,9 @@ MyDialog{
 
         anchors.top: tbSignalName.bottom
         anchors.topMargin: 50
-        anchors.leftMargin: parent.cusPadding
-        anchors.rightMargin: parent.cusPadding
+        //anchors.leftMargin: parent.cusPadding
+        //anchors.rightMargin: parent.cusPadding
+        anchors.margins: root.cusPadding
     }
 
 
@@ -126,13 +121,12 @@ MyDialog{
 
     TextField {
         id: txtAudioUrl
-        height: txtSignalName.height
+        height: 50
 
         anchors.verticalCenter: chkHasAudioUrl.verticalCenter
         anchors.left: chkHasAudioUrl.right
         anchors.right: parent.right
-
-        anchors.margins: parent.padding
+        anchors.margins: root.cusPadding
 
         enabled: chkHasAudioUrl.checked
         //readOnly: parent.readonly
@@ -146,72 +140,68 @@ MyDialog{
         anchors.topMargin: 20
     }
 
-
-
-        Button{
-            id: ctlOk
-            width: 80
-            height: 30
-
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 10
-            anchors.right: parent.horizontalCenter
-            anchors.rightMargin: 10
-
-            contentItem: Text {
-                id: ctlButtonText
-                text: qsTr("确定")
-                font.family: "MicrosoftYaHei"
-                font.pixelSize:10
-                color: "#ffffff"
-
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-            }
-
-           background: Rectangle{
-               color: "#2889f4"
-           }
-
-           onClicked: {
-               //parent.accepted();
-               root.accept();
-           }
-        }
-
-        Button{
-            id: ctlCancel
-            width: 80
-            height: 30
-
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 10
-            anchors.left: parent.horizontalCenter
-            anchors.leftMargin: 10
-
-            contentItem: Text {
-                id: ctlButtonText_2
-                text: qsTr("取消")
-                font.family: "MicrosoftYaHei"
-                font.pixelSize:10
-                color: "#ffffff"
-
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-            }
-
-           background: Rectangle{
-               color: "#2889f4"
-           }
-
-           onClicked: {
-               root.reject();
-           }
-        }
-
-
 }
 
+//        Button{
+//            id: ctlOk
+//            width: 80
+//            height: 30
+
+//            anchors.bottom: parent.bottom
+//            anchors.bottomMargin: 10
+//            anchors.right: parent.horizontalCenter
+//            anchors.rightMargin: 10
+
+//            contentItem: Text {
+//                id: ctlButtonText
+//                text: qsTr("确定")
+//                font.family: "MicrosoftYaHei"
+//                font.pixelSize:10
+//                color: "#ffffff"
+
+//                verticalAlignment: Text.AlignVCenter
+//                horizontalAlignment: Text.AlignHCenter
+//            }
+
+//           background: Rectangle{
+//               color: "#2889f4"
+//           }
+
+//           onClicked: {
+//               //parent.accepted();
+//               root.accept();
+//           }
+//        }
+
+//        Button{
+//            id: ctlCancel
+//            width: 80
+//            height: 30
+
+//            anchors.bottom: parent.bottom
+//            anchors.bottomMargin: 10
+//            anchors.left: parent.horizontalCenter
+//            anchors.leftMargin: 10
+
+//            contentItem: Text {
+//                id: ctlButtonText_2
+//                text: qsTr("取消")
+//                font.family: "MicrosoftYaHei"
+//                font.pixelSize:10
+//                color: "#ffffff"
+
+//                verticalAlignment: Text.AlignVCenter
+//                horizontalAlignment: Text.AlignHCenter
+//            }
+
+//           background: Rectangle{
+//               color: "#2889f4"
+//           }
+
+//           onClicked: {
+//               root.reject();
+//           }
+//        }
 
 
 //Text {

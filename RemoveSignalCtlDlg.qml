@@ -1,8 +1,9 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.5
+import QtQml 2.12
+import "BaseComponent"
 
 //删除视频流对话框
-
 MyDialog {
     id: root
     title: qsTr("操作提示")
@@ -13,13 +14,32 @@ MyDialog {
     closePolicy: Popup.CloseOnEscape
 
     property alias infoText: displayInfo.text
+    property int itemIndex: -1
 
-    accept_Btn.contentText: "保存"
+    accept_Btn.contentText: "确定"
     reject_Btn.contentText: "取消"
+
+    onAccepted:{
+        if(null == signalList.get(itemIndex))
+        {
+            return;
+        }
+        console.log("index:", itemIndex, "sig:", signalList.get(itemIndex))
+        mediaServer.removeStream(signalList.get(itemIndex).name);
+        signalList.remove(itemIndex)
+        signalList.saveSettings();
+
+        var index = itemIndex;
+        if (index >= signalList.count) index--;
+        lstSignals.currentIndex = index;
+    }
+
 
     Text {
         id: displayInfo
         text: qsTr("")
+
+        anchors.centerIn: parent
     }
 
 
